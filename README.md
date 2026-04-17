@@ -97,6 +97,3 @@ Ce projet est développé et partagé **à des fins strictement éducatives et p
 
 ---
 
-## 👤 Auteur
-
-**Maxime288** — [github.com/Maxime288](https://github.com/Maxime288)
