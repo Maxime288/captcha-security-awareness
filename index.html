@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification de sécurité</title>
+    <style>
+        /* Configuration des couleurs et polices */
+        :root {
+            --blue-header: #4a86e8;
+            --bg-gray: #7a818c;
+            --text-main: #3c4043;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+        }
+
+        body {
+            background-color: var(--bg-gray);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Boîte de chargement en arrière-plan */
+        .loading-card {
+            position: absolute;
+            left: -60px;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--blue-header);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Carte Principale */
+        .main-card {
+            width: 440px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            background-color: var(--blue-header);
+            color: white;
+            padding: 24px 32px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .header h1 {
+            margin: 4px 0 0 0;
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .content {
+            padding: 32px;
+            min-height: 200px;
+        }
+
+        .instruction-header {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .icon-kb {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            fill: var(--text-secondary);
+        }
+
+        /* Liste des étapes */
+        .step-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .step-number {
+            background-color: #f1f3f4;
+            color: var(--text-main);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 16px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .win-icon {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin: 0 4px;
+            fill: var(--text-main);
+        }
+
+        strong { font-weight: 700; }
+
+        /* Style pour l'état de chargement final */
+        .loading-state {
+            text-align: center;
+            padding-top: 40px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="loading-card">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="main-card" id="mainCard">
+        <div class="header">
+            <p id="subTitle">Pour vérifier votre demande</p>
+            <h1 id="mainTitle">suivez les instructions ci-dessous</h1>
+        </div>
+        
+        <div class="content" id="cardContent">
+            <div class="instruction-header">
+                <svg class="icon-kb" viewBox="0 0 24 24"><path d="M20,5H4C2.89,5 2,5.89 2,7V17A2,2 0 0,0 4,19H20A2,2 0 0,0 22,17V7C22,5.89 21.1,5 20,5M4,7H20V17H4V7M5,11H7V13H5V11M8,11H10V13H8V11M11,11H13V13H11V11M14,11H16V13H14V11M17,11H19V13H17V11M5,14H7V16H5V14M8,14H16V16H8V14M17,14H19V16H17V14Z" /></svg>
+                Utilisez le clavier dans cet ordre :
+            </div>
+            
+            <div class="step-list">
+                <div class="step-item">
+                    <span class="step-number">1</span>
+                    <span>Appuyez sur 
+                        <svg class="win-icon" viewBox="0 0 88 88"><path d="M0 12.402l35.687-4.86.016 34.423-35.67.203zm35.67 33.528l.023 34.44-35.693-4.892-.007-30.008zM39.427 6.908L88 0v41.527l-48.573.34zm48.573 37.535V88l-48.573-6.945-.032-34.143z"/></svg> 
+                        + <strong>X</strong>
+                    </span>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">2</span>
+                    <span id="step2">Appuyez sur <strong>I</strong> (ou choisissez <strong>Terminal</strong>)</span>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">3</span>
+                    <span>Appuyez sur <strong>Ctrl + V</strong></span>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">4</span>
+                    <span>Appuyez sur <strong>Entrée</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Écouteur de clavier global
+    document.addEventListener('keydown', function(event) {
+        // On cible spécifiquement la touche "Entrée" qui est la dernière étape
+        if (event.key === 'Enter') {
+            
+            // 1. Modification visuelle immédiate
+            const mainTitle = document.getElementById('mainTitle');
+            const subTitle = document.getElementById('subTitle');
+            const cardContent = document.getElementById('cardContent');
+            
+            subTitle.innerText = "Vérification en cours";
+            mainTitle.innerText = "Validation de l'identité...";
+            
+            // On remplace le contenu par un message de chargement
+            cardContent.innerHTML = `
+                <div class="loading-state">
+                    <div class="spinner" style="margin: 0 auto 20px auto; width: 40px; height: 40px;"></div>
+                    Analyse des composants système terminée.<br>
+                    Redirection vers l'espace sécurisé...
+                </div>
+            `;
+
+            // 2. Redirection après un court délai pour la crédibilité
+            setTimeout(function() {
+                // Remplace 'prevention.html' par le nom exact de ton fichier de sensibilisation
+                window.location.href = "prevention.html"; 
+            }, 2000);
+        }
+    });
+</script>
+
+</body>
+</html>
